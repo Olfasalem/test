@@ -42,8 +42,8 @@ pipeline {
             steps {
                 script {
                     // Construisez l'image Docker
-                    bat "docker build -t front-ang-image:${BUILD_ID} frontend/"
-                    bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                    bat "docker build -t back-end-image:${BUILD_ID} "
+                    bat "docker tag back-end-image:${BUILD_ID} olfasalem/back-end-image:${BUILD_ID}"
                 }
             }
         }
