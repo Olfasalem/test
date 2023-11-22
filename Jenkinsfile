@@ -51,10 +51,10 @@ pipeline {
                     bat "docker tag backend-img:latest chetouiiftikhar/backend-img:%BUILD_ID%"
                     // Poussez l'image Docker vers Docker Hub
                     bat "docker push olfasalem/backend-img:%BUILD_ID%"
-                }}
+                }
             }
-        }
-            
+            }
+    
         
 
         stage('Run Docker Container') {
