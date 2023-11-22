@@ -29,7 +29,7 @@ pipeline {
                     // Changez de répertoire vers le dossier de votre application
             
                         // Exécutez la commande Maven pour nettoyer et construire le projet
-                        //bat './mvnw clean install'
+                          bat './mvnw clean install'
                         
 
                     
