@@ -37,6 +37,31 @@ pipeline {
             }
         }
 
+
+ stage('Build & rename Docker Image') {
+            steps {
+                script {
+                    // Construisez l'image Docker
+                    bat "docker build -t front-ang-image:${BUILD_ID} frontend/"
+                    bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Exécutez le conteneur Docker en utilisant l'image construite
+                    bat "docker run -d -p 87:80 --name frontend_container_${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                }
+            }
+        }
+
+
+
+
+        
+
         stage('Docker Build and Push') {
             steps {
                 script {
