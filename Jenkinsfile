@@ -46,11 +46,11 @@ pipeline {
                     //bat 'docker rm -f back_container'
                     // Construisez l'image Docker
                     bat 'docker --version'
-                    bat 'docker build -t spring-img .'
+                    bat 'docker build -t backend-img .'
                     // Étiquetez l'image Docker avec le numéro de version de la construction (%BUILD_ID%)
-                    bat "docker tag spring-img:latest chetouiiftikhar/spring-img:%BUILD_ID%"
+                    bat "docker tag backend-img:latest chetouiiftikhar/backend-img:%BUILD_ID%"
                     // Poussez l'image Docker vers Docker Hub
-                    bat "docker push chetouiiftikhar/spring-img:%BUILD_ID%"
+                    bat "docker push olfasalem/backend-img:%BUILD_ID%"
                 }}
             }
         }
@@ -103,6 +103,6 @@ pipeline {
 
   //  }
 }
-}
+
 
 
