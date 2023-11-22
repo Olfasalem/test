@@ -52,7 +52,8 @@ pipeline {
             steps {
                 script {
                     // Exécutez le conteneur Docker en utilisant l'image construite
-                    bat "docker run -d -p 87:80 --name frontend_container_${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                
+                       bat "docker run -d -p 8888:8080 --name backend_cont_${BUILD_ID} olfasalem/spring-img:${BUILD_ID}"
                 }
             }
         }
@@ -62,36 +63,36 @@ pipeline {
 
         
 
-        stage('Docker Build and Push') {
-            steps {
-                script {
+        //stage('Docker Build and Push') {
+          //  steps {
+            //    script {
                     // Revenez au répertoire parent
-                    bat 'dir'
-                    {
+              //      bat 'dir'
+                //    {
                          // Connectez-vous à Docker Hub en utilisant les informations d'identification stockées dans la variable d'environnement
-                      bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
+                  //    bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
                     // Supprimez le conteneur Docker existant
                     //bat 'docker rm -f back_container'
                     // Construisez l'image Docker
-                    bat 'docker --version'
-                    bat 'docker build -t spring-img .'
+                    //bat 'docker --version'
+                    //bat 'docker build -t spring-img .'
                     // Étiquetez l'image Docker avec le numéro de version de la construction (%BUILD_ID%)
-                    bat "docker tag spring-img:latest olfasalem/spring-img:%BUILD_ID%"
+                    //bat "docker tag spring-img:latest olfasalem/spring-img:%BUILD_ID%"
                     // Poussez l'image Docker vers Docker Hub
-                    bat "docker push olfasalem/spring-img:%BUILD_ID%"
-                }}
-            }
-        }
-        stage('Run Docker Container') {
-            steps {
-                script {
+                    //bat "docker push olfasalem/spring-img:%BUILD_ID%"
+                //}}
+            //}
+        //}
+        //stage('Run Docker Container') {
+          //  steps {
+            //    script {
                         // Exécutez le conteneur Docker en utilisant l'image  construite 
-                        bat "docker run -d -p 8888:8080 --name backend_cont_${BUILD_ID} olfasalem/spring-img:${BUILD_ID}"
-                                 }
-    }
-}
+              //          bat "docker run -d -p 8888:8080 --name backend_cont_${BUILD_ID} olfasalem/spring-img:${BUILD_ID}"
+                //                 }
+    //}
+//}
 
-    }
+  //  }
 }
 
 
