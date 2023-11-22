@@ -41,22 +41,19 @@ pipeline {
  stage('Build & rename Docker Image') {
             steps {
                 script {
-                    bat 'dir'
-                    bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
+                     bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
                     // Supprimez le conteneur Docker existant
                     //bat 'docker rm -f back_container'
                     // Construisez l'image Docker
                     bat 'docker --version'
-                    bat 'docker build -t backend-img .'
+                    bat 'docker build -t spring-img .'
                     // Étiquetez l'image Docker avec le numéro de version de la construction (%BUILD_ID%)
-                    bat "docker tag back-img:latest olfasalem/backend-img:%BUILD_ID%"
+                    bat "docker tag spring-img:latest chetouiiftikhar/spring-img:%BUILD_ID%"
                     // Poussez l'image Docker vers Docker Hub
-                    bat "docker push olfasalem/backend-img:%BUILD_ID%"
-            
-                }
+                    bat "docker push chetouiiftikhar/spring-img:%BUILD_ID%"
+                }}
             }
-                
-                }
+        }
             
         
 
