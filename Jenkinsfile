@@ -27,12 +27,12 @@ pipeline {
             steps {
                 script {
                     // Changez de répertoire vers le dossier de votre application
-                    dir('ExamenPartie2olfasalem/crowdapp') {
+            
                         // Exécutez la commande Maven pour nettoyer et construire le projet
                         //bat './mvnw clean install'
                         
 
-                    }
+                    
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
                 script {
                     // Revenez au répertoire parent
                     bat 'dir'
-                    dir('ExamenPartie2olfasalem/crowdapp'){
+                    {
                          // Connectez-vous à Docker Hub en utilisant les informations d'identification stockées dans la variable d'environnement
                       bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
                     // Supprimez le conteneur Docker existant
