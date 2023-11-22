@@ -10,7 +10,7 @@ pipeline {
         // Définir le chemin de Docker
          DOCKER_PATH = "C:\\Program Files\\Docker\\cli-plugins"
         // Utilisez les informations d'identification Docker Hub en tant que variable d'environnement
-        DOCKERHUB_CREDENTIALS = credentials('olfsalem')
+        //DOCKERHUB_CREDENTIALS = credentials('olfsalem')
     }
 
     stages {
@@ -42,7 +42,7 @@ pipeline {
                     bat 'dir'
                     dir('ExamenPartie2olfasalem'){
                          // Connectez-vous à Docker Hub en utilisant les informations d'identification stockées dans la variable d'environnement
-                    bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
+                   // bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
                     // Supprimez le conteneur Docker existant
                     //bat 'docker rm -f back_container'
                     // Construisez l'image Docker
