@@ -41,12 +41,24 @@ pipeline {
  stage('Build & rename Docker Image') {
             steps {
                 script {
+                    bat 'dir'
+                    bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
+                    // Supprimez le conteneur Docker existant
+                    //bat 'docker rm -f back_container'
                     // Construisez l'image Docker
-                    bat "docker build -t back-end-image:${BUILD_ID} "
-                    bat "docker tag back-end-image:${BUILD_ID} olfasalem/back-end-image:${BUILD_ID}"
+                    bat 'docker --version'
+                    bat 'docker build -t backend-img .'
+                    // Étiquetez l'image Docker avec le numéro de version de la construction (%BUILD_ID%)
+                    bat "docker tag back-img:latest olfasalem/backend-img:%BUILD_ID%"
+                    // Poussez l'image Docker vers Docker Hub
+                    bat "docker push olfasalem/backend-img:%BUILD_ID%
+            
                 }
             }
-        }
+                
+                }
+            
+        
 
         stage('Run Docker Container') {
             steps {
